@@ -1,5 +1,7 @@
-<h1> Discord </h1>
-<img width="135" height="135" alt="image" src="https://github.com/user-attachments/assets/08bef124-9386-4bb2-a9f9-778bfdef9931" />
+## Discord
+<img width="135" height="135" alt="image" src="https://github.com/user-attachments/assets/08bef124-9386-4bb2-a9f9-778bfdef9931" />  
+
+## Insignias
 <p align="left">
 <img alt="Static Badge" src="https://img.shields.io/badge/licencia-MIT-green">
 <img alt="Static Badge" src="https://img.shields.io/badge/maven--central-v4.0.1-blue">
@@ -7,26 +9,26 @@
 </p>
 
 ## Índice  
-* [Título e imagen de portada](#Título-e-imagen-de-portada)  
+* [Título e imagen de portada](#discord)  
 * [Insignias](#insignias)  
 * [Índice](#índice)  
 * [Descripción del proyecto](#descripción-del-proyecto)  
-* [Estado del proyecto](#Estado-del-proyecto)  
-* [Características de la aplicación y demostración](#Características-de-la-aplicación-y-demostración)  
-* [Acceso al proyecto](#acceso-proyecto)  
+* [Estado del proyecto](#estado-del-proyecto)  
+* [Características de la aplicación y demostración](#características-de-la-aplicación-y-demostración)  
+* [Acceso al proyecto](#acceso-al-proyecto)  
 * [Tecnologías utilizadas](#tecnologías-utilizadas)  
 * [Personas Contribuyentes](#personas-contribuyentes)  
-* [Personas-Desarrolladores del Proyecto](#personas-desarrolladores)  
+* [Personas Desarrolladores del Proyecto](#personas-desarrolladores-del-proyecto)  
 * [Licencia](#licencia)  
 * [Conclusión](#conclusión)  
 
 ## Descripción del proyecto
 Discord es una plataforma de comunicación que permite crear comunidades y conectarse mediante texto, voz y video. Ofrece servidores organizados en canales, soporte para bots y APIs, y está disponible en múltiples plataformas, lo que la convierte en una herramienta versátil para gaming, trabajo en equipo y proyectos colaborativos.
 
-## Estado del proyecto  
+## Estado del proyecto
 :warning: Proyecto en construcción :warning:
 
-## Funcionalidades del proyecto
+## Características de la aplicación y demostración
 - ` Mensajería `: comunicación mediante texto en canales organizados.
 - ` Llamadas de voz y video `: conexión en tiempo real con audio y video.
 - `Bots e integraciones`: automatización de tareas, moderación y ampliación de funciones.
@@ -49,5 +51,14 @@ https://discord.com/
 ## Personas Contribuyentes  
 - `Equipo de desarrollo de Discord Inc.`
 
-## Personas-Desarrolladores del Proyecto
-<img width="180" height="180" alt="17" src="https://github.com/user-attachments/assets/6c7e3230-149a-47ad-a683-8e824c72b166" />
+## Personas Desarrolladores del Proyecto
+| Foto | Nombre |
+|------|--------|
+|<img src="https://github.com/user-attachments/assets/ecd9c34d-a28b-4a70-b990-f40348a9e3df" width="100" style="border-radius:50;"> | **Jason Citron** – Cofundador y CEO de Discord |
+| <img src="https://github.com/user-attachments/assets/a89f4dc7-3b95-4f04-8cf4-3a8eebe332a3" width="100" style="border-radius:50;"> | **Stan Vishnevskiy** – Cofundador y CTO de Discord |
+
+## Licencia
+Discord es una licencia de MIT.
+
+## Conclusión
+Discord es una plataforma de comunicación que permite comunicarte con todo el mundo
