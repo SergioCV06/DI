@@ -79,6 +79,12 @@ class MainView:
     def __init__(self, master):
         self.master = master
 
+        self.menubar = tkinter.Menu(master)
+        master.config(menu=self.menubar)
+
+        self.menu_archivo = tkinter.Menu(self.menubar, tearoff=0)
+        self.menubar.add_cascade(label="Archivo", menu=self.menu_archivo)
+
         self.master.rowconfigure(0, weight=1)
         self.master.rowconfigure(1, weight=0)
         self.master.columnconfigure(0, weight=1)
@@ -104,17 +110,20 @@ class MainView:
         self.detalles_contenido.pack(fill="both", expand=True, padx=10, pady=10)
         self.detalles_contenido.columnconfigure(0, weight=1)
 
+        self.detalles_titulo = ctk.CTkLabel(self.detalles_contenido, text="Detalles del Usuario", font=("Arial", 18))
+        self.detalles_titulo.grid(row=0, column=0, pady=(10, 10))
+
         self.avatar_label = ctk.CTkLabel(self.detalles_contenido, text="")
-        self.avatar_label.grid(row=0, column=0, pady=(20, 25))
+        self.avatar_label.grid(row=1, column=0, pady=(10, 20))
 
         self.nombre_label = ctk.CTkLabel(self.detalles_contenido, text="Nombre:")
-        self.nombre_label.grid(row=1, column=0, pady=5, sticky="w")
+        self.nombre_label.grid(row=2, column=0, pady=5, sticky="w")
 
         self.edad_label = ctk.CTkLabel(self.detalles_contenido, text="Edad:")
-        self.edad_label.grid(row=2, column=0, pady=5, sticky="w")
+        self.edad_label.grid(row=3, column=0, pady=5, sticky="w")
 
         self.genero_label = ctk.CTkLabel(self.detalles_contenido, text="Género:")
-        self.genero_label.grid(row=3, column=0, pady=5, sticky="w")
+        self.genero_label.grid(row=4, column=0, pady=5, sticky="w")
 
         self.add_button = ctk.CTkButton(self.bottom_frame, text="Añadir Usuario")
         self.add_button.grid(row=0, column=0, padx=10, pady=10, sticky="w")

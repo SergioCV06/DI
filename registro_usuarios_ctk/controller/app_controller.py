@@ -15,11 +15,17 @@ class AppController:
 
         self.base_dir = Path(__file__).resolve().parent.parent
         self.assets_dir = self.base_dir / "assets"
+        self.csv_path = self.base_dir / "usuarios.csv"
+
         self.avatar_cache = {}
 
         self.view.add_button.configure(command=self.abrir_ventana_añadir)
         self.view.exit_button.configure(command=self.salir)
 
+        self.view.menu_archivo.add_command(label="Guardar", command=self.guardar_csv)
+        self.view.menu_archivo.add_command(label="Cargar", command=self.cargar_csv)
+
+        self.cargar_csv(init=True)
         self.refrescar_lista_usuarios()
 
     def refrescar_lista_usuarios(self):
@@ -70,6 +76,16 @@ class AppController:
         ctk_img = ctk.CTkImage(light_image=img, dark_image=img, size=(140, 140))
         self.avatar_cache[filename] = ctk_img
         return ctk_img
+
+    def guardar_csv(self):
+        self.model.guardar_csv(self.csv_path)
+        messagebox.showinfo("OK", "Usuarios guardados en CSV.")
+
+    def cargar_csv(self, init=False):
+        self.model.cargar_csv(self.csv_path)
+        if not init:
+            messagebox.showinfo("OK", "Usuarios cargados desde CSV.")
+        self.refrescar_lista_usuarios()
 
     def salir(self):
         self.master.destroy()
