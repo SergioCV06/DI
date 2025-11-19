@@ -22,6 +22,9 @@ class GestorUsuarios:
     def agregar(self, usuario):
         self._usuarios.append(usuario)
 
+    def eliminar(self, indice):
+        del self._usuarios[indice]
+
     def limpiar(self):
         self._usuarios.clear()
 
@@ -39,7 +42,13 @@ class GestorUsuarios:
                 next(reader)
                 self.limpiar()
                 for row in reader:
+                    if len(row) != 4:
+                        continue
                     nombre, edad, genero, avatar = row
-                    self.agregar(Usuario(nombre, int(edad), genero, avatar))
+                    try:
+                        edad_int = int(edad)
+                    except ValueError:
+                        continue
+                    self.agregar(Usuario(nombre, edad_int, genero, avatar))
         except FileNotFoundError:
             pass
