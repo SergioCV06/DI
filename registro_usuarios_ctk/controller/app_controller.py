@@ -1,5 +1,6 @@
 from pathlib import Path
 from tkinter import messagebox
+import threading
 import customtkinter as ctk
 from PIL import Image
 
@@ -21,9 +22,14 @@ class AppController:
         self.filtered_indices = []
         self.selected_filtered_index = None
 
+        self.auto_save_on = False
+        self.auto_thread = None
+        self.auto_stop_event = None
+
         self.view.add_button.configure(command=self.abrir_ventana_añadir)
         self.view.delete_button.configure(command=self.eliminar_usuario)
         self.view.exit_button.configure(command=self.salir)
+        self.view.auto_button.configure(command=self.toggle_auto_guardado)
 
         self.view.menu_archivo.add_command(label="Guardar", command=self.guardar_csv)
         self.view.menu_archivo.add_command(label="Cargar", command=self.cargar_csv)
@@ -33,6 +39,7 @@ class AppController:
 
         self.cargar_csv(init=True)
         self.aplicar_filtros()
+        self.view.set_status("Listo.")
 
     def aplicar_filtros(self):
         usuarios = self.model.listar()
@@ -174,5 +181,34 @@ class AppController:
             self.view.set_status("Usuarios cargados desde CSV.")
         self.aplicar_filtros()
 
+    def toggle_auto_guardado(self):
+        if not self.auto_save_on:
+            self.auto_save_on = True
+            self.auto_stop_event = threading.Event()
+            self.auto_thread = threading.Thread(target=self.auto_guardado_loop, daemon=True)
+            self.auto_thread.start()
+            self.view.auto_button.configure(text="Auto-guardar (10s): ON")
+            self.view.set_status("Auto-guardado activado.")
+        else:
+            self.auto_save_on = False
+            if self.auto_stop_event is not None:
+                self.auto_stop_event.set()
+            self.auto_thread = None
+            self.view.auto_button.configure(text="Auto-guardar (10s): OFF")
+            self.view.set_status("Auto-guardado desactivado.")
+
+    def auto_guardado_loop(self):
+        while not self.auto_stop_event.is_set():
+            self.auto_stop_event.wait(10)
+            if self.auto_stop_event.is_set():
+                break
+            try:
+                self.model.guardar_csv(self.csv_path)
+                self.master.after(0, lambda: self.view.set_status("Auto-guardado en CSV."))
+            except:
+                pass
+
     def salir(self):
+        if self.auto_save_on and self.auto_stop_event is not None:
+            self.auto_stop_event.set()
         self.master.destroy()

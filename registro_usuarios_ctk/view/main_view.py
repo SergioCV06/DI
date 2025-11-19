@@ -129,9 +129,18 @@ class MainView:
 
         self.bottom_frame = ctk.CTkFrame(self.master)
         self.bottom_frame.grid(row=2, column=0, columnspan=2, sticky="ew", padx=10, pady=(0, 10))
-        self.bottom_frame.columnconfigure(0, weight=1)
+        self.bottom_frame.columnconfigure(0, weight=0)
         self.bottom_frame.columnconfigure(1, weight=1)
-        self.bottom_frame.columnconfigure(2, weight=1)
+        self.bottom_frame.columnconfigure(2, weight=0)
+
+        self.auto_button = ctk.CTkButton(self.bottom_frame, text="Auto-guardar (10s): OFF")
+        self.auto_button.grid(row=0, column=0, padx=10, pady=5, sticky="w")
+
+        self.status_label = ctk.CTkLabel(self.bottom_frame, text="", anchor="center")
+        self.status_label.grid(row=0, column=1, pady=5)
+
+        self.exit_button = ctk.CTkButton(self.bottom_frame, text="Salir")
+        self.exit_button.grid(row=0, column=2, padx=10, pady=5, sticky="e")
 
         self.lista_usuarios_scrollable = ctk.CTkScrollableFrame(self.left_frame)
         self.lista_usuarios_scrollable.pack(fill="both", expand=True, padx=10, pady=10)
@@ -143,7 +152,7 @@ class MainView:
         self.detalles_titulo = ctk.CTkLabel(self.detalles_contenido, text="Detalles del Usuario", font=("Arial", 18))
         self.detalles_titulo.grid(row=0, column=0, pady=(10, 10))
 
-        self.avatar_label = ctk.CTkLabel(self.detalles_contenido, text="")
+        self.avatar_label = ctk.CTkLabel(self.detalles_contenido, text="(avatar)")
         self.avatar_label.grid(row=1, column=0, pady=(10, 20))
 
         self.nombre_label = ctk.CTkLabel(self.detalles_contenido, text="Nombre: -")
@@ -154,12 +163,6 @@ class MainView:
 
         self.genero_label_det = ctk.CTkLabel(self.detalles_contenido, text="Género: -")
         self.genero_label_det.grid(row=4, column=0, pady=5, sticky="w")
-
-        self.status_label = ctk.CTkLabel(self.bottom_frame, text="", anchor="center")
-        self.status_label.grid(row=0, column=1, pady=5)
-
-        self.exit_button = ctk.CTkButton(self.bottom_frame, text="Salir")
-        self.exit_button.grid(row=0, column=2, padx=10, pady=5, sticky="e")
 
         self.avatar_image = None
 
@@ -182,7 +185,7 @@ class MainView:
             self.nombre_label.configure(text="Nombre: -")
             self.edad_label.configure(text="Edad: -")
             self.genero_label_det.configure(text="Género: -")
-            self.avatar_label.configure(image=None, text="")
+            self.avatar_label.configure(image=None, text="(avatar)")
             self.avatar_image = None
             return
 
@@ -194,7 +197,7 @@ class MainView:
             self.avatar_image = avatar_image
             self.avatar_label.configure(image=self.avatar_image, text="")
         else:
-            self.avatar_label.configure(image=None, text="")
+            self.avatar_label.configure(image=None, text="(avatar)")
             self.avatar_image = None
 
     def set_status(self, text):
